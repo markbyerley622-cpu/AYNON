@@ -61,8 +61,7 @@ function connectWebSocket() {
 
         state.ws.onerror = (error) => {
             console.error('WebSocket error:', error);
-            CONFIG.DEMO_MODE = true;
-            loadDemoData();
+            // Don't load demo data - keep empty until real data is entered
         };
 
         state.ws.onmessage = (event) => {
@@ -76,8 +75,7 @@ function connectWebSocket() {
 
     } catch (error) {
         console.error('Failed to connect WebSocket:', error);
-        CONFIG.DEMO_MODE = true;
-        loadDemoData();
+        // Don't load demo data - keep empty until real data is entered
     }
 }
 
@@ -828,12 +826,11 @@ function init() {
     // Try to connect to WebSocket server
     connectWebSocket();
 
-    // Fallback to demo mode after 3 seconds if no connection
+    // No demo mode - lists stay empty until admin enters addresses
     setTimeout(() => {
         if (!state.connected) {
-            console.log('No server connection, switching to demo mode');
-            CONFIG.DEMO_MODE = true;
-            loadDemoData();
+            console.log('No server connection - use admin panel (Ctrl+D) to load data');
+            updateAllUI(); // Show empty states
         }
     }, 3000);
 }

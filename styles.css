@@ -1587,42 +1587,151 @@ body {
     .navbar { padding: 12px 20px; }
     .nav-links { display: none; }
     .brand-text { font-size: 2rem; }
+    .nav-socials { gap: 8px; }
+    .social-btn { padding: 8px 15px; font-size: 1rem; }
+
+    /* CA Banner mobile */
+    .ca-banner {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 15px;
+    }
+    .ca-label { font-size: 1.2rem; }
+    .ca-address {
+        font-size: 0.4rem;
+        padding: 8px 10px;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+    }
+    .copy-btn { padding: 8px 15px; font-size: 1rem; }
+    .ca-banner:not(.hidden) ~ .navbar { top: 70px; }
 
     .hero { padding: 100px 20px 60px; }
 
-    .mega-are-you { font-size: 2.5rem; }
+    .mega-are-you { font-size: 2.5rem; letter-spacing: 8px; }
     .mega-naughty, .mega-nice { font-size: 5rem; }
     .mega-or { font-size: 2rem; }
 
-    .hero-stats { flex-direction: column; }
-    .hero-buttons { flex-direction: column; }
-    .btn-hero { text-align: center; }
+    .hero-stats { flex-direction: column; gap: 15px; }
+    .stat-box { width: 100%; padding: 20px; }
+    .hero-buttons { flex-direction: column; gap: 15px; }
+    .btn-hero { text-align: center; padding: 18px 30px; font-size: 1.5rem; }
 
     .hero-characters { display: none; }
 
     .section-title { font-size: 3rem; letter-spacing: 5px; }
-    .section-subtitle { font-size: 1rem; }
+    .section-subtitle { font-size: 1rem; padding: 0 10px; }
     .section-content { padding: 0 20px; }
 
-    .chart-container { height: 500px; }
+    /* Lists mobile */
+    .list-panel { margin-bottom: 30px; }
+    .list-header { padding: 15px 20px; }
+    .list-header h3 { font-size: 1.4rem; }
+    .list-count { font-size: 1.2rem; padding: 6px 15px; }
+    .list-character { display: none; }
+
+    .chart-container { height: 400px; }
+    .chart-wrapper { padding: 10px; }
 
     .tracker-box { flex-direction: column; }
+    .tracker-box input { padding: 18px; font-size: 0.5rem; }
     .btn-scan { width: 100%; border-left: none; border-top: 4px solid var(--black); }
 
     .result-grid { grid-template-columns: 1fr; }
+    .result-status { font-size: 2rem; }
+    .result-header { flex-direction: column; gap: 15px; align-items: flex-start; }
 
-    .footer-links { flex-wrap: wrap; gap: 30px; }
+    /* Activity feed mobile */
+    .activity-feed { padding: 15px; }
+    .activity-item { padding: 15px; gap: 15px; flex-wrap: wrap; }
+    .activity-icon { width: 40px; height: 40px; font-size: 1.4rem; }
+    .activity-tokens { font-size: 1.2rem; }
+    .activity-amount { width: 100%; text-align: left; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+    .footer-links { flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .footer-links a { font-size: 1.2rem; }
     .footer-brand { font-size: 3rem; }
+    .footer-disclaimer { font-size: 0.35rem; padding: 0 10px; }
 
-    .secret-panel-content { width: 95%; }
-    .input-row { flex-direction: column; }
+    .secret-panel-content { width: 95%; max-height: 90vh; overflow-y: auto; }
+    .secret-panel-header h3 { font-size: 1.8rem; }
+    .input-row { flex-direction: column; gap: 10px; }
     .panel-btn { width: 100%; }
+    .panel-section label { font-size: 1.2rem; }
+
+    /* Notifications mobile */
+    .notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        padding: 15px 20px;
+    }
+    .notif-text { font-size: 1rem; }
 }
 
 @media (max-width: 480px) {
-    .mega-naughty, .mega-nice { font-size: 3.5rem; }
-    .mega-are-you { font-size: 1.8rem; }
-    .mega-or { font-size: 1.5rem; }
+    .brand-text { font-size: 1.6rem; }
+    .social-btn { padding: 6px 12px; font-size: 0.9rem; }
 
-    .section-title { font-size: 2.2rem; }
+    .ca-banner { padding: 8px 10px; }
+    .ca-label { font-size: 1rem; }
+    .ca-address { font-size: 0.35rem; padding: 6px 8px; }
+    .copy-btn { padding: 6px 12px; font-size: 0.9rem; }
+
+    .hero { padding: 90px 15px 50px; }
+    .mega-naughty, .mega-nice { font-size: 3rem; letter-spacing: 4px; }
+    .mega-are-you { font-size: 1.5rem; letter-spacing: 5px; }
+    .mega-or { font-size: 1.3rem; }
+
+    .hero-tagline { font-size: 1rem; line-height: 1.8; }
+
+    .stat-box { padding: 15px; }
+    .stat-num { font-size: 2.2rem; }
+    .stat-label { font-size: 0.8rem; }
+
+    .btn-hero { font-size: 1.3rem; padding: 15px 25px; }
+
+    .section-title { font-size: 2rem; letter-spacing: 3px; }
+    .section-subtitle { font-size: 0.85rem; }
+    .section-content { padding: 0 15px; }
+
+    .section-tokenomics,
+    .section-lists,
+    .section-chart,
+    .section-tracker,
+    .section-activity { padding: 80px 0; }
+
+    .token-main-card { padding: 20px; }
+    .token-amount { font-size: 2rem; }
+    .token-stat { padding: 12px; }
+
+    .list-header h3 { font-size: 1.2rem; }
+    .wallet-address { font-size: 0.4rem; }
+
+    .chart-container { height: 350px; }
+
+    .tracker-box input { padding: 15px; }
+    .btn-scan { padding: 15px; font-size: 1.4rem; }
+
+    .result-card { padding: 20px; }
+    .result-status { font-size: 1.8rem; }
+    .result-verdict { font-size: 1rem; padding: 18px; }
+
+    .activity-item { padding: 12px; }
+    .activity-type { font-size: 1.1rem; }
+
+    .footer-brand { font-size: 2.5rem; }
+    .footer-links a { font-size: 1rem; }
+    .footer-copyright { font-size: 1.1rem; }
+
+    .secret-panel-header { padding: 15px 20px; }
+    .secret-panel-header h3 { font-size: 1.5rem; }
+    .close-btn { width: 40px; height: 40px; font-size: 1.5rem; }
+    .secret-panel-body { padding: 20px; }
+    .panel-section { margin-bottom: 25px; }
+    .panel-section label { font-size: 1rem; margin-bottom: 12px; }
+    .input-row input { padding: 14px; }
+    .panel-btn { padding: 14px 20px; font-size: 1.1rem; }
 }
