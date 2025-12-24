@@ -10,7 +10,12 @@ const CONFIG = {
     // Your token contract address (for GeckoTerminal iframe)
     TOKEN_ADDRESS: 'YOUR_TOKEN_ADDRESS_HERE',
 
-    // WebSocket server URL (change in production)
+    // Check if running on Vercel (static hosting - no backend)
+    IS_STATIC: window.location.hostname.includes('vercel.app') ||
+               window.location.hostname.includes('netlify.app') ||
+               window.location.hostname.includes('github.io'),
+
+    // WebSocket server URL (only for local/backend server)
     WS_URL: window.location.protocol === 'https:'
         ? `wss://${window.location.host}`
         : `ws://${window.location.host}`,
@@ -18,8 +23,8 @@ const CONFIG = {
     // API URL
     API_URL: window.location.origin,
 
-    // Fallback to demo mode if no server
-    DEMO_MODE: false
+    // Static mode - no backend available
+    STATIC_MODE: false
 };
 
 // ========================================
@@ -40,13 +45,35 @@ const state = {
 // WEBSOCKET CONNECTION
 // ========================================
 
+let wsRetryCount = 0;
+const MAX_WS_RETRIES = 2;
+
 function connectWebSocket() {
+    // Skip WebSocket on static hosts (Vercel, Netlify, etc.)
+    if (CONFIG.IS_STATIC) {
+        console.log('📡 Static hosting detected - WebSocket disabled');
+        CONFIG.STATIC_MODE = true;
+        updateConnectionStatus(false);
+        updateAllUI();
+        return;
+    }
+
+    // Don't retry too many times
+    if (wsRetryCount >= MAX_WS_RETRIES) {
+        console.log('⚠️ Max WebSocket retries reached - running in static mode');
+        CONFIG.STATIC_MODE = true;
+        updateConnectionStatus(false);
+        updateAllUI();
+        return;
+    }
+
     try {
         state.ws = new WebSocket(CONFIG.WS_URL);
 
         state.ws.onopen = () => {
             console.log('🟢 WebSocket connected');
             state.connected = true;
+            wsRetryCount = 0; // Reset on successful connection
             updateConnectionStatus(true);
         };
 
@@ -55,13 +82,19 @@ function connectWebSocket() {
             state.connected = false;
             updateConnectionStatus(false);
 
-            // Reconnect after 3 seconds
-            setTimeout(connectWebSocket, 3000);
+            // Only retry if we haven't exceeded max retries
+            if (wsRetryCount < MAX_WS_RETRIES) {
+                wsRetryCount++;
+                setTimeout(connectWebSocket, 3000);
+            } else {
+                CONFIG.STATIC_MODE = true;
+                updateAllUI();
+            }
         };
 
         state.ws.onerror = (error) => {
-            console.error('WebSocket error:', error);
-            // Don't load demo data - keep empty until real data is entered
+            console.log('WebSocket unavailable - static mode');
+            // Don't spam console with errors
         };
 
         state.ws.onmessage = (event) => {
@@ -74,8 +107,9 @@ function connectWebSocket() {
         };
 
     } catch (error) {
-        console.error('Failed to connect WebSocket:', error);
-        // Don't load demo data - keep empty until real data is entered
+        console.log('WebSocket not available - static mode');
+        CONFIG.STATIC_MODE = true;
+        updateAllUI();
     }
 }
 
@@ -826,13 +860,13 @@ function init() {
     // Try to connect to WebSocket server
     connectWebSocket();
 
-    // No demo mode - lists stay empty until admin enters addresses
+    // Show empty states after a short delay if not connected
     setTimeout(() => {
-        if (!state.connected) {
-            console.log('No server connection - use admin panel (Ctrl+D) to load data');
-            updateAllUI(); // Show empty states
+        if (!state.connected && !CONFIG.IS_STATIC) {
+            console.log('No server connection - run: node server.js');
         }
-    }, 3000);
+        updateAllUI(); // Show empty states
+    }, 1000);
 }
 
 // ========================================
@@ -888,6 +922,12 @@ window.addEventListener('keydown', async (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 'd') {
         e.preventDefault(); // Prevent browser bookmark dialog
 
+        // On static hosts, admin panel requires backend
+        if (CONFIG.IS_STATIC || CONFIG.STATIC_MODE) {
+            showNotification('error', 'Admin panel requires backend server. Run locally with: node server.js');
+            return;
+        }
+
         if (adminUnlocked) {
             // Already unlocked, just show the panel
             showSecretPanel();
@@ -916,7 +956,7 @@ window.addEventListener('keydown', async (e) => {
             }
         } catch (error) {
             console.error('Auth error:', error);
-            showNotification('error', 'Server error');
+            showNotification('error', 'Server not running. Start with: node server.js');
         }
     }
 });
