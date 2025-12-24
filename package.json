@@ -1,0 +1,25 @@
+{
+  "name": "aynon",
+  "version": "1.0.0",
+  "description": "AYNON - Are You Naughty or Nice? Solana Token Tracker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.22.1",
+    "ws": "^8.16.0"
+  },
+  "keywords": [
+    "solana",
+    "meme",
+    "token",
+    "tracker",
+    "christmas"
+  ],
+  "author": "",
+  "license": "MIT"
+}

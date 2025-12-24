@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYNON - Are You Naughty or Nice?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bungee&family=Bangers&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="snow-container"></div>
+
+    <!-- Contract Address Banner (Hidden by default, shown when CA is set) -->
+    <div id="ca-banner" class="ca-banner hidden">
+        <span class="ca-label">CA:</span>
+        <span id="ca-display" class="ca-address">--</span>
+        <button id="copy-ca-btn" class="copy-btn" title="Copy CA">COPY</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-text">$AYNON</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#tokenomics">TOKENOMICS</a>
+            <a href="#lists">LISTS</a>
+            <a href="#chart">CHART</a>
+            <a href="#tracker">TRACKER</a>
+        </div>
+        <div class="nav-socials">
+            <a href="https://twitter.com" target="_blank" class="social-btn">X</a>
+            <a href="https://t.me" target="_blank" class="social-btn">TG</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Giant Title -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-glow"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-main">
+                <h1 class="mega-title">
+                    <span class="mega-are-you">ARE YOU</span>
+                    <div class="mega-words">
+                        <span class="mega-naughty">NAUGHTY</span>
+                        <span class="mega-or">OR</span>
+                        <span class="mega-nice">NICE?</span>
+                    </div>
+                </h1>
+
+                <p class="hero-tagline">Santa's blockchain tracks <strong>EVERY</strong> wallet. No escape. No mercy. Only <strong>$AYNON</strong>.</p>
+
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <span class="stat-num" id="total-holders">--</span>
+                        <span class="stat-label">HOLDERS</span>
+                    </div>
+                    <div class="stat-box nice-box">
+                        <span class="stat-num" id="nice-count">--</span>
+                        <span class="stat-label">NICE</span>
+                    </div>
+                    <div class="stat-box naughty-box">
+                        <span class="stat-num" id="naughty-count">--</span>
+                        <span class="stat-label">NAUGHTY</span>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#tracker" class="btn-hero btn-green">CHECK WALLET</a>
+                    <a href="#" class="btn-hero btn-red" id="buy-btn">BUY $AYNON</a>
+                </div>
+            </div>
+
+            <div class="hero-characters">
+                <div class="character-panel pepe-panel">
+                    <img src="photo_2025-12-13_11-58-05.jpg" alt="AYNON Character">
+                    <div class="speech-bubble pepe-bubble" id="pepe-speech">HODL OR GET REKT!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section id="tokenomics" class="section-tokenomics">
+        <div class="section-content">
+            <h2 class="section-title">TOKENOMICS</h2>
+            <p class="section-subtitle">0.3% TAX - 100% TO HOLDERS</p>
+
+            <div class="tokenomics-grid">
+                <!-- Supply Info -->
+                <div class="token-main-card">
+                    <div class="token-header">
+                        <h3>$AYNON SUPPLY</h3>
+                        <div class="token-amount">1,000,000,000</div>
+                    </div>
+                    <div class="token-stats">
+                        <div class="token-stat">
+                            <span class="stat-icon">&#x1F525;</span>
+                            <span class="stat-text">LP BURNED</span>
+                            <span class="stat-value green">100%</span>
+                        </div>
+                        <div class="token-stat highlight">
+                            <span class="stat-icon">&#x1F4B0;</span>
+                            <span class="stat-text">BUY/SELL TAX</span>
+                            <span class="stat-value gold">0.3%</span>
+                        </div>
+                        <div class="token-stat">
+                            <span class="stat-icon">&#x1F381;</span>
+                            <span class="stat-text">TAX TO HOLDERS</span>
+                            <span class="stat-value green">100%</span>
+                        </div>
+                        <div class="token-stat">
+                            <span class="stat-icon">&#x2705;</span>
+                            <span class="stat-text">CONTRACT</span>
+                            <span class="stat-value green">RENOUNCED</span>
+                        </div>
+                    </div>
+                    <div class="tax-explainer">
+                        <p>Every buy & sell has a 0.3% tax that goes directly back to HODLERS on the Nice List!</p>
+                    </div>
+                </div>
+
+                <!-- Nice List Benefits -->
+                <div class="token-card nice-card">
+                    <div class="card-header nice-header">
+                        <h3>NICE LIST</h3>
+                        <span class="card-badge">HODLERS WIN</span>
+                    </div>
+                    <ul class="benefits-list">
+                        <li class="benefit-item">
+                            <span class="benefit-icon">+</span>
+                            <span>Weekly $AYNON airdrops from tax</span>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon">+</span>
+                            <span>Christmas mega reward pool</span>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon">+</span>
+                            <span>Exclusive NFT drops</span>
+                        </li>
+                        <li class="benefit-item">
+                            <span class="benefit-icon">+</span>
+                            <span>DAO voting power</span>
+                        </li>
+                    </ul>
+                    <div class="card-slogan nice-slogan">HOLD = WIN</div>
+                </div>
+
+                <!-- Naughty List Penalties -->
+                <div class="token-card naughty-card">
+                    <div class="card-header naughty-header">
+                        <h3>NAUGHTY LIST</h3>
+                        <span class="card-badge">SELLERS LOSE</span>
+                    </div>
+                    <ul class="benefits-list">
+                        <li class="benefit-item penalty">
+                            <span class="benefit-icon">X</span>
+                            <span>Zero airdrops forever</span>
+                        </li>
+                        <li class="benefit-item penalty">
+                            <span class="benefit-icon">X</span>
+                            <span>No Christmas rewards</span>
+                        </li>
+                        <li class="benefit-item penalty">
+                            <span class="benefit-icon">X</span>
+                            <span>Publicly shamed on-chain</span>
+                        </li>
+                        <li class="benefit-item penalty">
+                            <span class="benefit-icon">X</span>
+                            <span>Only coal for you</span>
+                        </li>
+                    </ul>
+                    <div class="card-slogan naughty-slogan">SELL = NGMI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Santa's Lists Section -->
+    <section id="lists" class="section-lists">
+        <div class="section-content">
+            <h2 class="section-title">SANTA'S LISTS</h2>
+            <p class="section-subtitle">Live tracking from the blockchain - Click any wallet to see on Solscan</p>
+
+            <div class="lists-container">
+                <!-- Nice List -->
+                <div class="list-panel nice-panel">
+                    <div class="list-header">
+                        <div class="list-title-wrap">
+                            <span class="list-icon">&#x1F381;</span>
+                            <h3>NICE LIST</h3>
+                        </div>
+                        <span class="list-count" id="nice-list-count">--</span>
+                    </div>
+                    <div class="list-filter">
+                        <input type="text" id="nice-filter" placeholder="Search wallet...">
+                    </div>
+                    <div class="list-content" id="nice-list-content">
+                        <div class="list-loading">
+                            <div class="loader"></div>
+                            <p>LOADING...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character in middle -->
+                <div class="list-character">
+                    <img src="photo_4_2025-12-13_11-44-25.jpg" alt="Santa Checking">
+                    <div class="character-caption">CHECKING TWICE!</div>
+                </div>
+
+                <!-- Naughty List -->
+                <div class="list-panel naughty-panel">
+                    <div class="list-header">
+                        <div class="list-title-wrap">
+                            <span class="list-icon">&#x1F480;</span>
+                            <h3>NAUGHTY LIST</h3>
+                        </div>
+                        <span class="list-count" id="naughty-list-count">--</span>
+                    </div>
+                    <div class="list-filter">
+                        <input type="text" id="naughty-filter" placeholder="Search wallet...">
+                    </div>
+                    <div class="list-content" id="naughty-list-content">
+                        <div class="list-loading">
+                            <div class="loader"></div>
+                            <p>LOADING...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Chart Section - BIGGER -->
+    <section id="chart" class="section-chart">
+        <div class="section-content full-width">
+            <h2 class="section-title">LIVE CHART</h2>
+            <p class="section-subtitle">Real-time price action on GeckoTerminal</p>
+
+            <div class="chart-wrapper">
+                <div class="chart-container" id="gecko-terminal">
+                    <div class="list-loading">
+                        <div class="loader"></div>
+                        <p>LOADING CHART...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wallet Tracker Section -->
+    <section id="tracker" class="section-tracker">
+        <div class="section-content">
+            <h2 class="section-title">WALLET TRACKER</h2>
+            <p class="section-subtitle">Check any wallet's status on Santa's list</p>
+
+            <div class="tracker-layout">
+                <div class="tracker-content">
+                    <div class="tracker-box">
+                        <input type="text" id="wallet-search" placeholder="ENTER SOLANA WALLET ADDRESS..." maxlength="44">
+                        <button id="search-btn" class="btn-scan">SCAN!</button>
+                    </div>
+
+                    <div id="search-result" class="search-result hidden">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <span class="result-status" id="result-status">--</span>
+                                <span class="result-wallet" id="result-wallet">--</span>
+                            </div>
+                            <div class="result-grid">
+                                <div class="result-item">
+                                    <span class="item-label">BALANCE</span>
+                                    <span class="item-value" id="result-balance">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="item-label">STATUS</span>
+                                    <span class="item-value" id="result-list-status">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="item-label">FIRST SEEN</span>
+                                    <span class="item-value" id="result-first-seen">--</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="item-label">LAST TX</span>
+                                    <span class="item-value" id="result-activity">--</span>
+                                </div>
+                            </div>
+                            <div class="result-verdict" id="result-verdict"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tracker-character">
+                    <img src="photo_2_2025-12-13_11-44-25.jpg" alt="Scanning">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Feed -->
+    <section class="section-activity">
+        <div class="section-content">
+            <h2 class="section-title">LIVE FEED</h2>
+            <p class="section-subtitle">Real-time buys and sells</p>
+            <div class="activity-feed" id="activity-feed">
+                <div class="list-loading">
+                    <div class="loader"></div>
+                    <p>CONNECTING...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-banner full-width">
+            <img src="photo_6_2025-12-13_11-44-25-removebg-preview.png" alt="AYNON Characters">
+        </div>
+        <div class="footer-content">
+            <div class="footer-brand">$AYNON</div>
+            <div class="footer-links">
+                <a href="#">CONTRACT</a>
+                <a href="#">GECKO TERMINAL</a>
+                <a href="#">TWITTER</a>
+                <a href="#">TELEGRAM</a>
+            </div>
+            <p class="footer-disclaimer">NOT FINANCIAL ADVICE. DYOR. MEME TOKEN FOR ENTERTAINMENT.</p>
+            <p class="footer-copyright">SANTA IS WATCHING... 2024</p>
+        </div>
+    </footer>
+
+    <!-- Secret Admin Panel -->
+    <div id="secret-panel" class="secret-panel hidden">
+        <div class="secret-panel-overlay"></div>
+        <div class="secret-panel-content">
+            <div class="secret-panel-header">
+                <h3>ADMIN PANEL</h3>
+                <button id="close-secret-panel" class="close-btn">X</button>
+            </div>
+            <div class="secret-panel-body">
+                <div class="panel-section">
+                    <label for="gecko-ca-input">1. GECKOTERMINAL CA (for chart)</label>
+                    <div class="input-row">
+                        <input type="text" id="gecko-ca-input" placeholder="Pool or token address for chart..." maxlength="44">
+                        <button id="load-chart-btn" class="panel-btn">LOAD CHART</button>
+                    </div>
+                    <p class="panel-hint">Loads GeckoTerminal chart with this address</p>
+                </div>
+                <div class="panel-section">
+                    <label for="ca-input">2. DISPLAY CA (for top banner)</label>
+                    <div class="input-row">
+                        <input type="text" id="ca-input" placeholder="Contract address to show in banner..." maxlength="44">
+                        <button id="update-ca-btn" class="panel-btn">SET CA</button>
+                    </div>
+                    <p class="panel-hint">Shows this address in the top banner with copy button</p>
+                </div>
+                <div class="panel-section">
+                    <label for="tma-input">3. TOKEN MINT (for holders tracking)</label>
+                    <div class="input-row">
+                        <input type="text" id="tma-input" placeholder="Token mint address..." maxlength="44">
+                        <button id="fetch-holders-btn" class="panel-btn">FETCH HOLDERS</button>
+                    </div>
+                    <p class="panel-hint">Fetches holders and tracks their buys/sells</p>
+                </div>
+                <div id="holder-status" class="holder-status hidden">
+                    <div class="loader"></div>
+                    <p id="holder-status-text">Fetching holders...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
