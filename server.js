@@ -13,11 +13,13 @@ require('dotenv').config();
 // CONFIGURATION
 // ========================================
 const CONFIG = {
-    PORT: 3000,
+    PORT: process.env.PORT || 3000,
     TOKEN_MINT: null,
     CONTRACT_ADDRESS: null,
     HELIUS_API_KEY: process.env.Heluis_RPC || null,
     SECRET_PASSWORD: process.env.Secret || 'admin123',
+    // Frontend URL for CORS (Vercel deployment)
+    FRONTEND_URL: process.env.FRONTEND_URL || 'https://aynon.vercel.app',
 };
 
 // ========================================
@@ -45,7 +47,11 @@ const SHAME_TITLES = [
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors());
+// CORS configuration for Vercel frontend
+app.use(cors({
+    origin: [CONFIG.FRONTEND_URL, 'http://localhost:3000', 'http://127.0.0.1:3000'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 

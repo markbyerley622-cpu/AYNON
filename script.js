@@ -6,22 +6,31 @@
 // ========================================
 // CONFIGURATION
 // ========================================
+
+// IMPORTANT: After deploying backend to Railway, update this URL!
+// Example: 'https://aynon-production.up.railway.app'
+const BACKEND_URL = null; // Set to your Railway URL after deployment
+
 const CONFIG = {
     // Your token contract address (for GeckoTerminal iframe)
     TOKEN_ADDRESS: 'YOUR_TOKEN_ADDRESS_HERE',
 
-    // Check if running on Vercel (static hosting - no backend)
-    IS_STATIC: window.location.hostname.includes('vercel.app') ||
+    // Check if running on static hosting without a backend configured
+    IS_STATIC: !BACKEND_URL && (
+               window.location.hostname.includes('vercel.app') ||
                window.location.hostname.includes('netlify.app') ||
-               window.location.hostname.includes('github.io'),
+               window.location.hostname.includes('github.io')),
 
-    // WebSocket server URL (only for local/backend server)
-    WS_URL: window.location.protocol === 'https:'
-        ? `wss://${window.location.host}`
-        : `ws://${window.location.host}`,
+    // Backend URL - use Railway URL if set, otherwise same origin
+    BACKEND: BACKEND_URL || window.location.origin,
+
+    // WebSocket server URL
+    WS_URL: BACKEND_URL
+        ? BACKEND_URL.replace('https://', 'wss://').replace('http://', 'ws://')
+        : (window.location.protocol === 'https:' ? `wss://${window.location.host}` : `ws://${window.location.host}`),
 
     // API URL
-    API_URL: window.location.origin,
+    API_URL: BACKEND_URL || window.location.origin,
 
     // Static mode - no backend available
     STATIC_MODE: false
